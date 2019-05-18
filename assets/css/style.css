@@ -1,0 +1,23 @@
+h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 100px;
+}
+
+.jumbotron {
+    background-image: url("../images/jumbobackground.jpg");
+    color: rgb(48, 24, 7);
+}
+
+#start {
+    background-color: rgb(148, 90, 48);
+    color: cornsilk;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    padding: 15px;
+    border-style: dotted;
+    border-color: rgb(48, 24, 7);
+}
+
+body {
+    background-color: rgb(158, 129, 108);
+}
