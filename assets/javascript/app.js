@@ -72,14 +72,14 @@ $("#start").on('click', function() {
 });
 
 //click event for buttons at e - event user input
-$(document).on('click', 'answer-button', function(e) {
+$(document).on('click', '.answer-button', function(e) {
     game.clicked(e);
 });
 
 var game = {
     questions: questions,
     currentQuestion:0,
-    counter:0,
+    counter:20,
     correct:0,
     incorrect:0,
     unanswered:0,
@@ -98,18 +98,19 @@ var game = {
     //questions will need to display, one at a time (for loop), with clickable answers.  
     showQuestion: function() {
         timer = setInterval(game.countdown, 1000);
-        $("#contentWrap").html('<h2>' + questions[game.currentQuestion].question + '</h2>');
+        $("#contentWrap").html("<h2 id='counter'>20</h2>");
+        $("#contentWrap").append('<h2>' + questions[game.currentQuestion].question + '</h2>');
 
         for (var i=0; i<questions[game.currentQuestion].answers.length; i++) {
-            console.log(`answers${i}`, questions[game.currentQuestion].answers[i]);
+            // console.log(`answers${i}`, questions[game.currentQuestion].answers[i]);
             
-            $('#contentWrap').append('<button class="answer-button" id="button-' +i+ '"data-name="' +questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
+            $('#contentWrap').append('<button class="answer-button" id="button- '+ i +' "data-name="' +questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
         }
     },
 
     //some sort of timed delay here - as per instructions -  before the next question displays
     nextQuestion: function() {
-        game.counter = 30;
+        game.counter = 20;
         $('#counter').html(game.counter);
         game.currentQuestion++;
         game.showQuestion();
@@ -127,7 +128,6 @@ var game = {
 
     //display something if correct
     correctAnswer: function() {
-        console.log("You got it!");
         clearInterval(timer);
         game.correct++;
         $("#contentWrap").html('<h2>Gobble Gobble! You Got It!</h2>');
@@ -177,7 +177,7 @@ var game = {
     //results page
     results: function() {
         clearInterval(timer);
-        $('#contentWrap').html("<h2>Are you done or are you finished, little turkey?</h2>");
+        $('#contentWrap').html("<h2>Are you DONE or are you FINISHED, turkey?</h2>");
         $('#contentWrap').append("<h3>Correct: "+game.correct+"</h3>");
         $('#contentWrap').append("<h3>Incorrect: "+game.incorrect+"</h3>");
         $('#contentWrap').append("<h3>Unanswered: "+game.unanswered+"</h3>");
