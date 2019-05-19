@@ -10,18 +10,19 @@ var questions = [{
     correctAnswer: "poult",
     image: "assets/images/question_2.jpe",
 }, 
+// {
+//     question: "At what age is a turkey hen able to lay her first egg?",
+//     answers: ["5 months", "7 months", "9 months", "12 months"],
+//     correctAnswer: "7 months",
+//     image: "assets/images/question_3.jpe",
+// }, 
 {
-    question: "At what age is a turkey hen able to lay her first egg?",
-    answers: ["5 months", "7 months", "9 months", "12 months"],
-    correctAnswer: "7 months",
-    image: "assets/images/question_3.jpe",
+    question: "True or False: Turkeys are able to fly.",
+    answers: [true, false],
+    correctAnswer: true,
+    image: "assets/images/question_4.jpe",
 }, 
 // {
-//     question: "True or False: Turkeys are able to fly.",
-//     answers: ["true", "false"],
-//     correctAnswer: "true",
-//     image: "assets/images/question_4.jpe",
-// }, {
 //     question: "Turkeys eat fruits, berries, & seeds.  These items belong in which part of the food chain?",
 //     answers: ["producers", "primary consumers", "secondary consumers", "decomposers"],
 //     correctAnswer: "producers",
@@ -49,12 +50,12 @@ var questions = [{
 // },  {
 //     question: "Which of the following traits does NOT fit in the 'bird' classification?",
 //     answers: ["vertebrate", "hollow bones", "lay eggs", "produce milk"],
-//     correctAnswer: "28 days",
+//     correctAnswer: "produce milk",
 //     image: "assets/images/question_10.jpe",
 // },  {
-//     question: "True or False: Turkeys will also consume insects and small reptiles along wih grass and berries.",
-//     answers: ["true", "false"],
-//     correctAnswer: "true",
+//     question: "True or False: Turkeys will also consume insects and small reptiles along wih grass and  berries.",
+//     answers: [true, false],
+//     correctAnswer: true,
 //     image: "assets/images/question_11.jpe",
 // },  {
 //     question: "What is the correct name for adolescent-aged male and female turkeys?",
@@ -71,6 +72,8 @@ var questions = [{
 $("#start").on('click', function() {
     $("#start").remove();
     game.showQuestion();
+    
+
 });
 
 //click event for buttons at e - event user input
@@ -80,7 +83,8 @@ $(document).on('click', '.answer-button', function(e) {
 
 $(document).on('click', '#reset', function() {
     game.reset();
-})
+    $("#reset").remove();
+  })
 
 var game = {
     questions: questions,
@@ -203,8 +207,9 @@ var game = {
         game.counter = 20;
         game.correct = 0;
         game.incorrect = 0;
-        game.unanswered = 0;
+        game.unanswered = 0;        
         game.showQuestion();
+        
     },
 
     //results page
@@ -217,7 +222,9 @@ var game = {
         $("#contentWrap").append("<img src='assets/images/winGif.gif' alt='Adams Family Turkey Gif'></img>");
         $('#resetButtonWrap').append("<button id='reset'>Play Again!</button>");
 
-
+        var audioResults = document.createElement("audio");
+        audioResults.setAttribute("src", "assets/sounds/videoplayback.webm");
+        audioResults.play();
 
     }
 
