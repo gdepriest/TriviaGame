@@ -1,3 +1,7 @@
+var audioResults = document.createElement("audio");
+audioResults.setAttribute("src", "assets/sounds/videoplayback.webm");
+
+
 // Create a list of questions and answers as objects
 var questions = [{
     question: "About how long does a turkey egg have to incubate before hatching?",
@@ -84,7 +88,9 @@ $(document).on('click', '.answer-button', function(e) {
 $(document).on('click', '#reset', function() {
     game.reset();
     $("#reset").remove();
-  })
+    audioResults.pause();
+    audioResults.currentTime = 0;
+});
 
 var game = {
     questions: questions,
@@ -222,8 +228,9 @@ var game = {
         $("#contentWrap").append("<img src='assets/images/winGif.gif' alt='Adams Family Turkey Gif'></img>");
         $('#resetButtonWrap').append("<button id='reset'>Play Again!</button>");
 
-        var audioResults = document.createElement("audio");
-        audioResults.setAttribute("src", "assets/sounds/videoplayback.webm");
+
+        // var audioResults = document.createElement("audio");
+        // audioResults.setAttribute("src", "assets/sounds/videoplayback.webm");
         audioResults.play();
 
     }
