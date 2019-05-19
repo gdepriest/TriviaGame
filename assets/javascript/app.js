@@ -64,6 +64,8 @@ var questions = [{
 // }, 
 ]
 
+
+
 //push start to start game - start button will also have to disappear
 
 $("#start").on('click', function() {
@@ -75,6 +77,10 @@ $("#start").on('click', function() {
 $(document).on('click', '.answer-button', function(e) {
     game.clicked(e);
 });
+
+$(document).on('click', '#reset', function() {
+    game.reset();
+})
 
 var game = {
     questions: questions,
@@ -98,7 +104,7 @@ var game = {
     //questions will need to display, one at a time (for loop), with clickable answers.  
     showQuestion: function() {
         timer = setInterval(game.countdown, 1000);
-        $("#contentWrap").html("<h2 id='counter'>20</h2>");
+        $("#contentWrap").html("<h2>TIME: <span id = 'counter'>20</span> Seconds</h2>");
         $("#contentWrap").append('<h2>' + questions[game.currentQuestion].question + '</h2>');
 
         for (var i=0; i<questions[game.currentQuestion].answers.length; i++) {
@@ -137,16 +143,28 @@ var game = {
         }else {
             setTimeout(game.nextQuestion,3*1000);
         }
+ 
+        var img = $('<img>').attr('src', questions[game.currentQuestion].image).attr('alt', "A picture of a turkey.").addClass("button img-thumbnail");
+
+        $('#contentWrap').append(img);
     },
 
     //display something if incorrect
     incorrectAnswer: function() {
-        console.log("negative, ghost-rider");
+        // console.log("negative, ghost-rider");
         clearInterval(timer);
         game.incorrect++;
         $("#contentWrap").html('<h2>Study up, little turkey!</h2>');
         $('#contentWrap').append('<h3>The correct answer was: '+questions[game.currentQuestion].correctAnswer+'</h3>');
 
+        var audioIncorrect = document.createElement("audio");
+        audioIncorrect.setAttribute("src", "assets/sounds/correctSound.mp3");
+        audioIncorrect.play();
+
+
+        var img = $('<img>').attr('src', questions[game.currentQuestion].image).attr('alt', "A picture of a turkey.").addClass("button img-thumbnail");
+
+        $('#contentWrap').append(img); 
 
         if (game.currentQuestion==questions.length-1) {
             setTimeout(game.results,3*1000);
@@ -162,16 +180,31 @@ var game = {
         $('#contentWrap').html('<h2>Out of Time!</h2>');
         $('#contentWrap').append('<h3>The correct answer was: '+questions[game.currentQuestion].correctAnswer+'</h3>');
 
+
         if (game.currentQuestion==questions.length-1) {
             setTimeout(game.results,3*1000);
         }else {
             setTimeout(game.nextQuestion,3*1000);
         }
+
+        //sound
+        var audioIncorrect = document.createElement("audio");
+        audioIncorrect.setAttribute("src", "assets/sounds/correctSound.mp3");
+        audioIncorrect.play();
+        //image
+        var img = $('<img>').attr('src', questions[game.currentQuestion].image).attr('alt', "A picture of a turkey.").addClass("button img-thumbnail");
+
+        $('#contentWrap').append(img);
     },
 
     //reset
     reset: function() {
-
+        game.currentQuestion = 0;
+        game.counter = 20;
+        game.correct = 0;
+        game.incorrect = 0;
+        game.unanswered = 0;
+        game.showQuestion();
     },
 
     //results page
@@ -181,7 +214,13 @@ var game = {
         $('#contentWrap').append("<h3>Correct: "+game.correct+"</h3>");
         $('#contentWrap').append("<h3>Incorrect: "+game.incorrect+"</h3>");
         $('#contentWrap').append("<h3>Unanswered: "+game.unanswered+"</h3>");
+        $('#contentWrap').append("<button id='reset'>Play Again!</button>");
+        $("#contentWrap").append("<img src='assets/images/winGif.gif' alt='Adams Family Turkey Gif'></img>");
+
+
     }
+
+    
 
 }
 
