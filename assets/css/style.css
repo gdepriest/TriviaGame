@@ -1,6 +1,19 @@
 h1 {
     font-family: 'Anton', sans-serif;
     font-size: 100px;
+    color: rgb(48, 24, 7);
+}
+
+h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 55px;
+    color: rgb(48, 24, 7);
+}
+
+h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    color: rgb(48, 24, 7);
 }
 
 .jumbotron {
@@ -14,10 +27,38 @@ h1 {
     font-family: 'Anton', sans-serif;
     font-size: 40px;
     padding: 15px;
-    border-style: dotted;
-    border-color: rgb(48, 24, 7);
+    border: 2px dotted rgb(48, 24, 7);
+
 }
 
 body {
     background-color: rgb(158, 129, 108);
+}
+
+.answer-button {
+    background-color: rgb(148, 90, 48);
+    color: cornsilk;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    padding: 15px;
+    margin: 0 20px 0 0;
+    border: 2px dotted rgb(48, 24, 7);
+    border-radius: 15px;
+}
+
+#reset {
+    background-color: rgb(148, 90, 48);
+    color: cornsilk;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    padding: 15px;
+    margin: 20px 0 0 0;
+    border: 2px dotted rgb(48, 24, 7);
+    border-radius: 15px;
+}
+
+.img-thumbnail {
+    max-width: 400px;
+    height: auto;
+    
 }

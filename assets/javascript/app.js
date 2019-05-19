@@ -104,7 +104,7 @@ var game = {
     //questions will need to display, one at a time (for loop), with clickable answers.  
     showQuestion: function() {
         timer = setInterval(game.countdown, 1000);
-        $("#contentWrap").html("<h2>TIME: <span id = 'counter'>20</span> Seconds</h2>");
+        $("#contentWrap").html("<h3>TIME: <span id = 'counter'>20</span> Seconds</h3>");
         $("#contentWrap").append('<h2>' + questions[game.currentQuestion].question + '</h2>');
 
         for (var i=0; i<questions[game.currentQuestion].answers.length; i++) {
@@ -214,8 +214,9 @@ var game = {
         $('#contentWrap').append("<h3>Correct: "+game.correct+"</h3>");
         $('#contentWrap').append("<h3>Incorrect: "+game.incorrect+"</h3>");
         $('#contentWrap').append("<h3>Unanswered: "+game.unanswered+"</h3>");
-        $('#contentWrap').append("<button id='reset'>Play Again!</button>");
         $("#contentWrap").append("<img src='assets/images/winGif.gif' alt='Adams Family Turkey Gif'></img>");
+        $('#resetButtonWrap').append("<button id='reset'>Play Again!</button>");
+
 
 
     }
